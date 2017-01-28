@@ -1,0 +1,24 @@
+{
+    "name": "antoniotajuelo/akismet-php",
+    "description": "Stop spam from hitting your website comments or content using Akismet.",
+    "keywords": ["akismet","spam","antispam","spam filter"],
+    "homepage": "https://github.com/antoniotajuelo/akismet-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antonio Tajuelo",
+            "email": "atajuelo@gmail.com",
+            "homepage": "https://www.antoniotajuelo.com/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "guzzlehttp/guzzle": "6.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AntonioTajuelo\\Akismet\\": "src"
+        }
+    }
+}
