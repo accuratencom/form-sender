@@ -203,6 +203,7 @@ class formSender {
         $settings = [
             'username' => SLACK_USERNAME,
             'channel' => SLACK_CHANNEL,
+            'icon' => SLACK_ICON,
             'link_names' => true
         ];
 

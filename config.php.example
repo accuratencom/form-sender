@@ -2,6 +2,7 @@
 define('SLACK_USERNAME','');
 define('SLACK_CHANNEL','');
 define('SLACK_WEBHOOK_URL','');
+define('SLACK_ICON', ':speech_balloon:');
 
 define('AKISMET_KEY','');
 
