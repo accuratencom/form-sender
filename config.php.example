@@ -1,0 +1,11 @@
+<?
+define('SLACK_USERNAME','');
+define('SLACK_CHANNEL','');
+define('SLACK_WEBHOOK_URL','');
+
+define('AKISMET_KEY','');
+
+define('MAILGUN_KEY','');
+define('MAILGUN_DOMAIN','');
+define('MAILGUN_TO','');
+define('MAILGUN_SUBJECT','New request from website {{site_url}}');
