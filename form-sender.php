@@ -241,8 +241,9 @@ class formSender {
 }
 
 $formSender=new formSender('post');
-$formSender->setNameField('name',true);
+$formSender->setNameField('name', true);
 $formSender->setEmailField('_replyto');
-$formSender->setMessageField('message',true);
-$formSender->setDestinations(array('slack','mailgun'));
+$formSender->setField('tel', false);
+$formSender->setMessageField('message', true);
+$formSender->setDestinations(array('slack', 'mailgun'));
 $formSender->send();
