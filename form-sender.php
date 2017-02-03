@@ -188,11 +188,10 @@ class formSender {
     function sendToMailgun() {
         $mg = new Mailgun\Mailgun(MAILGUN_KEY);
         $params=array();
-        //$params['from']=(isset($this->fieldsA['email'])&&$this->fieldsA['email']!='')?$this->fieldsA['email']:MAILGUN_TO;
-        $params['from']=MAILGUN_TO;
+        $params['from']=MAILGUN_FROM;
         $params['to']=MAILGUN_TO;
         $params['subject']=$this->processContent(MAILGUN_SUBJECT);
-        $params['html']=$this->getTemplate('mailgun');
+        $params['html']=$this->getTemplate('mailgun-client-ru');
         $mg->sendMessage(MAILGUN_DOMAIN, $params);
     }
 
@@ -244,6 +243,7 @@ $formSender=new formSender('post');
 $formSender->setNameField('name', true);
 $formSender->setEmailField('_replyto');
 $formSender->setField('tel', false);
+$formSender->setField('lang', false);
 $formSender->setMessageField('message', true);
 $formSender->setDestinations(array('slack', 'mailgun'));
 $formSender->send();
