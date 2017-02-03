@@ -191,7 +191,16 @@ class formSender {
         $params['from']=MAILGUN_FROM;
         $params['to']=MAILGUN_TO;
         $params['subject']=$this->processContent(MAILGUN_SUBJECT);
-        $params['html']=$this->getTemplate('mailgun-client-ru');
+        if (isset($this->fieldsA['lang'])) {
+            if ($this->fieldsA['lang'] == 'ru') {
+                $template_name = 'mailgun-client-ru';
+                $params['subject']= 'Accuraten спешит на помощь';
+            } else {
+                $template_name = 'mailgun-client-en';
+                $params['subject']= 'Accuraten is here to help';
+            }
+        }
+        $params['html']=$this->getTemplate($template_name);
         $mg->sendMessage(MAILGUN_DOMAIN, $params);
     }
 
