@@ -8,6 +8,4 @@ define('AKISMET_KEY','');
 
 define('MAILGUN_KEY','');
 define('MAILGUN_DOMAIN','');
-define('MAILGUN_TO','');
 define('MAILGUN_FROM','');
-define('MAILGUN_SUBJECT','New request from website {{site_url}}');

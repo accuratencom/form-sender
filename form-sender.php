@@ -189,7 +189,9 @@ class formSender {
         $mg = new Mailgun\Mailgun(MAILGUN_KEY);
         $params=array();
         $params['from']=MAILGUN_FROM;
-        $params['to']=MAILGUN_TO;
+        if (isset($this->fieldsA['email'])) {
+            $params['to']=$this->fieldsA['email'];
+        }
         $params['subject']=$this->processContent(MAILGUN_SUBJECT);
         if (isset($this->fieldsA['lang'])) {
             if ($this->fieldsA['lang'] == 'ru') {
