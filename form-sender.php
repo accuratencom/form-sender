@@ -256,6 +256,6 @@ $formSender->setNameField('name', true);
 $formSender->setEmailField('_replyto');
 $formSender->setField('tel', false);
 $formSender->setField('lang', false);
-$formSender->setMessageField('message', true);
+$formSender->setMessageField('message');
 $formSender->setDestinations(array('slack', 'mailgun'));
 $formSender->send();
