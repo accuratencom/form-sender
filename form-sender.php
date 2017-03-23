@@ -91,7 +91,7 @@ class formSender {
     }
 
     /**
-     * Изменеие источника данных для скрипта
+     * Изменение источника данных для скрипта
      * @param string $source Источник данных - POST, GET, REQUEST
      */
     private function setFieldsSource($source="POST") {
@@ -247,7 +247,6 @@ class formSender {
         }
         return $content;
     }
-
 }
 
 $formSender=new formSender('post');
