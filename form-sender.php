@@ -183,31 +183,33 @@ class formSender {
     }
 
     /**
-     * Отправка сообщения через сервис Mailgun
+     * Sending a message with Mailgun
      */
     function sendToMailgun() {
         $mg = new Mailgun\Mailgun(MAILGUN_KEY);
         $params=array();
         $params['from']=MAILGUN_FROM;
+
+        // Sending only if email is set
         if (isset($this->fieldsA['email'])) {
             $params['to']=$this->fieldsA['email'];
-        }
-        $params['subject']=$this->processContent(MAILGUN_SUBJECT);
-        if (isset($this->fieldsA['lang'])) {
-            if ($this->fieldsA['lang'] == 'ru') {
-                $template_name = 'mailgun-client-ru';
-                $params['subject']= 'Accuraten спешит на помощь';
-            } else {
-                $template_name = 'mailgun-client-en';
-                $params['subject']= 'Accuraten is here to help';
+            $params['subject']=$this->processContent(MAILGUN_SUBJECT);
+            if (isset($this->fieldsA['lang'])) {
+                if ($this->fieldsA['lang'] == 'ru') {
+                    $template_name = 'mailgun-client-ru';
+                    $params['subject']= 'Accuraten спешит на помощь';
+                } else {
+                    $template_name = 'mailgun-client-en';
+                    $params['subject']= 'Accuraten is here to help';
+                }
             }
+            $params['html']=$this->getTemplate($template_name);
+            $mg->sendMessage(MAILGUN_DOMAIN, $params);
         }
-        $params['html']=$this->getTemplate($template_name);
-        $mg->sendMessage(MAILGUN_DOMAIN, $params);
     }
 
     /**
-     * Отправка сообщения в сервис Slack
+     * Sending a message to Slack
      */
     function sendToSlack() {
         $settings = [
