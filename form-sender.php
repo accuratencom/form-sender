@@ -155,6 +155,10 @@ class formSender {
         }
     }
 
+    function checkIfEmailFilled() {
+        return isset($this->fieldsA['email']) && $this->fieldsA['email']!='';
+    }
+
     /**
      * Проверка на спам через сервис Akismet
      * @return bool Возвращает true, если сообщение определено как спам, в ином случае возвращает false
@@ -243,9 +247,19 @@ class formSender {
     private function processContent($content) {
         foreach($this->fieldsA as $key=>$value) {
             $content=str_replace("{{".$key."}}",$value,$content);
+            if ($value=='') {
+                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]\n*|s", "", $content);
+            } else {
+                $content = preg_replace("|{{" . $key . ":removeLineIfNotExist}}|", $value, $content);
+            }
         }
         foreach($this->specialFieldsA as $key=>$value) {
             $content=str_replace("{{".$key."}}",$value,$content);
+            if ($value=='') {
+                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]\n*|s", "", $content);
+            } else {
+                $content = preg_replace("|{{" . $key . ":removeLineIfNotExist}}|", $value, $content);
+            }
         }
         return $content;
     }
@@ -257,5 +271,9 @@ $formSender->setEmailField('_replyto');
 $formSender->setField('tel', false);
 $formSender->setField('lang', false);
 $formSender->setMessageField('message');
-$formSender->setDestinations(array('slack', 'mailgun'));
+if ($formSender->checkIfEmailFilled()) {
+    $formSender->setDestinations(array('slack', 'mailgun'));
+} else {
+    $formSender->setDestinations(array('slack'));
+}
 $formSender->send();
