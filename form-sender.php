@@ -248,7 +248,8 @@ class formSender {
         foreach($this->fieldsA as $key=>$value) {
             $content=str_replace("{{".$key."}}",$value,$content);
             if ($value=='') {
-                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]\n*|s", "", $content);
+                $content = preg_replace("|[^\r]*{{" . $key . ":removeLineIfNotExist}}[^\r]*\r|s", "", $content);
+                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]*\n|s", "", $content);
             } else {
                 $content = preg_replace("|{{" . $key . ":removeLineIfNotExist}}|", $value, $content);
             }
@@ -256,7 +257,8 @@ class formSender {
         foreach($this->specialFieldsA as $key=>$value) {
             $content=str_replace("{{".$key."}}",$value,$content);
             if ($value=='') {
-                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]\n*|s", "", $content);
+                $content = preg_replace("|[^\r]*{{" . $key . ":removeLineIfNotExist}}[^\r]*\r|s", "", $content);
+                $content = preg_replace("|[^\n]*{{" . $key . ":removeLineIfNotExist}}[^\n]*\n|s", "", $content);
             } else {
                 $content = preg_replace("|{{" . $key . ":removeLineIfNotExist}}|", $value, $content);
             }
